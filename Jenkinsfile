@@ -11,7 +11,7 @@ pipeline {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
     }
-    stage('query2') {
+    stage('query3') {
       steps {
         bat("SQLCMD -S MIKE-PC \n select name, database_id from sys.databases; go \n")
       }
