@@ -13,7 +13,7 @@ pipeline {
     }
     stage('query3') {
       steps {
-        bat("SQLCMD -S MIKE-PC \n select name, database_id from sys.databases; go \n")
+        bat("SQLCMD -S MIKE-PC -Q 'select name, database_id from sys.databases' \n")
       }
     }
   }
