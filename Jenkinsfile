@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Get Code 1') {
       steps{
-        git credentialsId: credentialsId ,
+        git credentialsId: '32575326-a981-4fbc-ab10-8867b851b645',
         url: "https://github.com/miguelFV/MSSQLSERVER_instance.git" , branch : "IST"
       }
     }
