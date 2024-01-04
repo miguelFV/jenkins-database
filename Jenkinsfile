@@ -8,7 +8,7 @@ pipeline {
     }
     stage('query2') {
       steps {
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} salida de jekins"
       }
     }
     stage('query3') {
