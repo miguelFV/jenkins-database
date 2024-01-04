@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
+    stage('Get Code 1') {
+      steps{
+        git credentialsId: credentialsId ,
+        url: "https://github.com/miguelFV/MSSQLSERVER_instance.git" , branch : "IST"
+      }
+    }
     stage('Get code') {
       steps {
-        git ("https://github.com/miguelFV/MSSQLSERVER_instance.git",'IST')
         bat ("dir")
         echo 'code Downloaded'
       }
