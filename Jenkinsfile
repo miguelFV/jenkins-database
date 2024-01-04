@@ -17,17 +17,19 @@ pipeline {
     }
     stage('Apply changes') {
       steps {
-        def isSuccess = true
-        def projects = null 
-        try {
-        projects = readJSON file: "apply_sql.json"
-        }catch(e) {
-        isSuccess = false
-        }
-        projects.files_to_apply.each {
-          def sqlToApply = it
-          echo $sqlToApply
-          echo sqlToApply
+        script{
+          def isSuccess = true
+          def projects = null 
+          try {
+            projects = readJSON file: "apply_sql.json", returnPojo: true
+          }catch(e) {s
+            isSuccess = false
+          }
+          projects[files_to_apply].each {
+            def sqlToApply = it
+            echo ${sqlToApply}
+            echo sqlToApply
+          }
         }
         bat("SQLCMD -S MIKE-PC -Q \"select name, database_id from sys.databases\" ")
       }
