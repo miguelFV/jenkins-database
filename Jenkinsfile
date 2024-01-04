@@ -1,18 +1,27 @@
 pipeline {
   agent any
   stages {
-    stage('query') {
+    stage('Get code') {
       steps {
-        echo 'hello world'
+        git ("https://github.com/miguelFV/MSSQLSERVER_instance.git",'IST')
+        bat ("dir")
+        echo 'code Downloaded'
       }
     }
-    stage('query2') {
+    stage('Apply changes') {
       steps {
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} salida de jekins"
-      }
-    }
-    stage('query3') {
-      steps {
+        def isSuccess = true
+        def projects = null 
+        try {
+        projects = readJSON file: "/MSSQLSERVER_instance/apply_sql.json"
+        }catch(e) {
+        isSuccess = false
+        }
+        projects.files_to_apply.each {
+          def sqlToApply = it
+          echo $sqlToApply
+          echo sqlToApply
+        }
         bat("SQLCMD -S MIKE-PC -Q \"select name, database_id from sys.databases\" ")
       }
     }
