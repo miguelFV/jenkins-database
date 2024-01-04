@@ -17,10 +17,10 @@ pipeline {
     }
     stage('Apply changes') {
       steps {
-        /*def isSuccess = true
+        def isSuccess = true
         def projects = null 
         try {
-        projects = readJSON file: "/MSSQLSERVER_instance/apply_sql.json"
+        projects = readJSON file: "apply_sql.json"
         }catch(e) {
         isSuccess = false
         }
@@ -28,7 +28,7 @@ pipeline {
           def sqlToApply = it
           echo $sqlToApply
           echo sqlToApply
-        }*/
+        }
         bat("SQLCMD -S MIKE-PC -Q \"select name, database_id from sys.databases\" ")
       }
     }
