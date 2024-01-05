@@ -30,7 +30,13 @@ pipeline {
           projects['files_to_apply'].each {
             def sqlToApply = it
             echo "Try to execute "+sqlToApply.toString();
-            bat("SQLCMD -S MIKE-PC -i ${sqlToApply.toString()}")
+            try {
+             bat("SQLCMD -S MIKE-PC -i ${sqlToApply.toString()}")
+             echo "EXECUTE SUCCESS FOR "+sqlToApply.toString();
+            }catch(e) {s
+              isSuccess = false
+              echo "FAILED TO EXECUTE "+sqlToApply.toString();
+            }
           }
         }
         bat("SQLCMD -S MIKE-PC -Q \"select name, database_id from sys.databases\" ")
