@@ -22,6 +22,7 @@ pipeline {
           def projects = null 
           try {
             projects = readJSON file: "apply_sql.json", returnPojo: true
+            echo "si leeyo correcto"
           }catch(e) {s
             isSuccess = false
           }
