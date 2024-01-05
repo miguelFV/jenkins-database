@@ -22,15 +22,14 @@ pipeline {
           def projects = null 
           try {
             projects = readJSON file: "apply_sql.json", returnPojo: true
-            echo "si leeyo correcto"
+            //echo "si leeyo correcto"
           }catch(e) {s
             isSuccess = false
           }
-          print projects
+          //print projects
           projects['files_to_apply'].each {
             def sqlToApply = it
-            echo ${sqlToApply}
-            echo sqlToApply
+            print sqlToApply
           }
         }
         bat("SQLCMD -S MIKE-PC -Q \"select name, database_id from sys.databases\" ")
