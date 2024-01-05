@@ -23,7 +23,7 @@ pipeline {
           try {
             projects = readJSON file: "apply_sql.json", returnPojo: true
             //echo "si leeyo correcto"
-          }catch(e) {s
+          }catch(e) {
             isSuccess = false
           }
           //print projects
@@ -33,7 +33,7 @@ pipeline {
             try {
              bat("SQLCMD -S MIKE-PC -i ${sqlToApply.toString()}")
              echo "EXECUTE SUCCESS FOR "+sqlToApply.toString();
-            }catch(e) {s
+            }catch(e) {
               isSuccess = false
               echo "FAILED TO EXECUTE "+sqlToApply.toString();
             }
