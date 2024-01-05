@@ -26,7 +26,7 @@ pipeline {
           }catch(e) {s
             isSuccess = false
           }
-          echo projects
+          print projects
           projects['files_to_apply'].each {
             def sqlToApply = it
             echo ${sqlToApply}
